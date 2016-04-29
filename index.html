@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script src="tabletop.js"></script>
+</head>
+
+
+<body>
+  <div txt="title"></div>
+  <div txt="description"></div>
+  <div txt="rules"></div>
+</body>
+
+<script type="text/javascript">
+  window.onload = function() { init() };
+
+  var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1dzi3S8Cru2K4kDJJxO3-8EOWdEyM_c5e1mV9t9ouyAQ/pubhtml';
+
+  function init() {
+    Tabletop.init( { key: public_spreadsheet_url,
+                     callback: showInfo,
+                     simpleSheet: true } )
+  }
+
+  function showInfo(data, tabletop) {
+    for (var i=0; i < data.length; i++) {
+        $("div[txt=" + data[i].ID+ "]").html(data[i].Text);
+    }
+  }
+</script>
+
+</html>
